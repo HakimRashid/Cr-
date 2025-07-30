@@ -1,27 +1,72 @@
 import { Box, Button, Input, VStack, Flex, Text, ButtonGroup, Image } from "@chakra-ui/react"
-import { useState } from "react";
+import { useState, type ChangeEvent } from "react";
+import { useNavigate } from "react-router-dom";
+
+type Inputs = {
+    email: string;
+    password: string;
+    confirmPassword?: string;
+}
 
 const AuthForm = () => {
 
-    const [isLogin, setIsLogin] = useState(false);
+    const [isLogin, setIsLogin] = useState<boolean>(false);
+    const [inputs, setInputs] = useState<Inputs>({
+        email: '',
+        password: '',
+        confirmPassword: ''
+    });
+
+    const navigate = useNavigate();
+    const [passwordError, setPasswordError] = useState<boolean>(false);
+    const [missMatchError, setMissMatchError] = useState<boolean>(false);
+    const [missingFieldsError, setMissingFieldsError] = useState<boolean>(false);
+
+    const handleAuth = () => {
+        // Handle authentication logic here
+        if (!inputs.email || !inputs.password) {
+            setMissingFieldsError(true);
+            return;
+        }
+        setMissingFieldsError(false);
+        if (inputs.password.length < 6) {
+            setPasswordError(true);
+            return;
+        }
+        setPasswordError(false);
+        if (!isLogin && inputs.password !== inputs.confirmPassword) {
+            setMissMatchError(true);
+            return;
+        }
+        setMissMatchError(false);
+        navigate('/');
+    };
+
+    const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setInputs({ ...inputs, [e.target.name]: e.target.value });
+  };
 
   return (
     <Box border={"1px solid gray"} borderRadius={4} padding={5}>
         <VStack>
             {/* Form content goes here */}
             <Text fontFamily="Bangers, cursive" fontWeight="bold" fontSize="4xl"> { isLogin ? "Login" : "Sign up"} </Text>
-            <Input type="email" placeholder="Email or Username" />
-            <Input type="password" placeholder="Password" />
+            <Input name='email' type="email" placeholder="Email or Username" value={inputs.email} onChange={handleChange} />
+            <Input name='password' type="password" placeholder="Password" value={inputs.password} onChange={handleChange} />
 
             {isLogin ? (<Text flex={10} fontSize={11} color={"green.500"} textAlign={"left"} alignSelf={"flex-start"} _hover={{ color: "gray.300", textDecoration: "underline"}}>forgot password?</Text>) : null}
 
-            {!isLogin ? (<Input type="password" placeholder="Confirm Password" />) : null}
+            {!isLogin ? (<Input name='confirmPassword' type="password" placeholder="Confirm Password" value={inputs.confirmPassword} onChange={handleChange} />) : null}
 
-            <Button w={"full"} colorScheme="blue" bgColor={"green.400"} size={"sm"} fontSize={14}>
+            {passwordError && <Text color="red.500" fontSize={11}>Password must be at least 6 characters long.</Text>}
+            {missMatchError && <Text color="red.500" fontSize={11}>Passwords do not match.</Text>}
+            {missingFieldsError && <Text color="red.500" fontSize={11}>Please fill in all fields.</Text>}
+
+            <Button w={"full"} colorScheme="blue" bgColor={"green.400"} size={"sm"} fontSize={14} onClick={handleAuth}>
                 {isLogin ? "Login" : "Sign Up"}
             </Button>
             
-            {/* OR Divider 8 */}
+            {/* OR Divider  */}
             <Flex alignItems={"center"} justifyContent={"center"} my={4} gap={0} w={"full"}>
              <Box flex={2} height={"1px"} bgColor={"gray.300"}/>
               <Box border={"1px solid gray"} borderRadius={4} padding={0} flex={1} textAlign={"center"} fontSize={14} color={"gray.100"} borderWidth={2}>
