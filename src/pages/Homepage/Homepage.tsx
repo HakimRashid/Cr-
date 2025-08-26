@@ -1,20 +1,22 @@
+import ExploreNew from '@/components/ExploreMore/ExploreNew'
+import TrendingCru from '@/components/ExploreMore/TrendingCru'
 import FeedPosts from '@/components/FeedPosts/FeedPosts'
-import { Box, Container, Flex } from '@chakra-ui/react'
-import React from 'react'
+import { Box, Flex, VStack } from '@chakra-ui/react'
 
 const Homepage = () => {
   return (
-    <Container maxW={"8xl"}>
-      <Flex gap={20}>
-        <Box flex={2} py={10} border={"1px solid blue"}>
+      <Flex gap={10} borderWidth={5} borderColor={"red"}>
+        <Box flex={2} py={10}  borderColor={"green"} borderWidth={5} maxW={"100%"}>
           <FeedPosts/>
         </Box>
-        <Box flex={1} mr={20} display={{ base: 'none', md: 'block' }} py={10}
-        maxW={"300px"} border={"1px solid red"}>
-          suggestions
+        <Box flex={1} display={{ base: 'none', md: 'block' }}
+         borderColor={"black"} borderWidth={4}>
+          <VStack gap={8}>
+            <TrendingCru />
+            <ExploreNew />
+          </VStack>
         </Box>
       </Flex>
-    </Container>
   )
 }
 

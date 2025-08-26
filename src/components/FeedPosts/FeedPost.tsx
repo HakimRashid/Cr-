@@ -1,16 +1,25 @@
-import React from 'react'
 import PostHeader from './PostHeader'
-import { Box, Image } from '@chakra-ui/react'
+import { Box,  AspectRatio } from '@chakra-ui/react'
 import PostFooter from './PostFooter'
+import React from 'react';
+import AutoplayVideo from '../AutoPlayVideo/AutoPlayVideo';
 
-const FeedPost = (img, username, avatar) => {
+interface FeedPostProps {
+  vid: string;
+  username: string;
+  avatar: string;
+}
+
+const FeedPost: React.FC<FeedPostProps> = ({ vid, username, avatar }) => {
   return (
-    <Box borderColor={"whiteAlpha.300"} borderWidth={1} p={7} borderRadius={50}>
+    <Box borderColor={"whiteAlpha.300"} borderWidth={1} p={5} borderRadius={50} bgColor={"#cfceceff"} boxShadow={"md"}>
       <PostHeader username={username} avatar={avatar}/>
-        <Box>
-          <Image src="/placeholder.png" alt="Post Image" h={400} borderRadius={4} overflow={"hidden"}/>
+        <Box my={2} borderRadius={4} overflow={"hidden"}>
+          <AspectRatio ratio={9/16} maxW="100%">
+            <AutoplayVideo url={vid}/>
+          </AspectRatio>
         </Box>
-      <PostFooter />
+      <PostFooter username={username} ratings={0}/>
     </Box>
   )
 }

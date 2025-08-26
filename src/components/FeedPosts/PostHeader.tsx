@@ -1,27 +1,36 @@
 import { Avatar, Box, Flex, Text, VStack } from '@chakra-ui/react'
 import React from 'react'
+import { ExpandableText } from './ExpandableText';
 
-const PostHeader = () => {
+interface PostHeaderProps {
+  username: string;
+  avatar: string;
+}
+
+const PostHeader: React.FC<PostHeaderProps> = ({username, avatar}) => {
   return (
     <VStack>
         <Flex justifyContent="space-between" alignItems="center" w="full">
             <Flex alignItems="center" gap={2}>
-                <Avatar.Root size="sm">
-                    <Avatar.Image src="/placeholder.png" alt="User Avatar" />
+                <Avatar.Root size="sm" shape="rounded">
+                    <Avatar.Image src={avatar} alt="User Avatar" />
                 </Avatar.Root>
-                <Flex fontSize={12} fontWeight="bold" gap={2}>
-                    User
-                    <Box color={"gray.500"}>• 2h ago</Box>
-                </Flex>
+                <VStack fontSize={12} gap={-1} alignItems={"initial"} fontWeight="bold">
+                    {username}
+                    <Text color={"gray.500"}>Saturday, 9 August 11:00AM</Text>
+                </VStack>
             </Flex>
-            <Flex alignItems={"center"} gap={2}></Flex>
+            <Flex alignItems={"center"} gap={2} />
             <Box cursor={"pointer"}>
                 <Text fontSize={12} color={"blue.500"} fontWeight={"bold"} _hover={{color:"white"}}>Unfollow</Text>
             </Box>
         </Flex>
-        <Text>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-        </Text>
+
+        <Box display="flex" width="100%">
+            <ExpandableText lines={1}>
+                Lorem ipsum dolor sit. 
+            </ExpandableText>
+        </Box>
     </VStack>
   )
 }

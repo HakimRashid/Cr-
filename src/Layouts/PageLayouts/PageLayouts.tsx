@@ -12,7 +12,7 @@ const PageLayouts = ({ children } : PageLayoutsProps) => {
   return (
     <Flex>
         { /* sidebar on the left */}
-        {pathname !== '/auth' ? (<Box w={{base: '70px', md:'250px'}}>
+        {(pathname !== '/auth' && pathname !== '/OnBoarding' && pathname !== '/onboarding') ? (<Box w={{base: '70px', md:'250px'}}>
             <Sidebar />
         </Box>) : null}
         { /*Page content on the right */}

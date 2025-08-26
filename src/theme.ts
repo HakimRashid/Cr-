@@ -19,7 +19,7 @@ const config = defineConfig({
         },
 
         fg: { DEFAULT: { value: {
-              _light: "{colors.black}",
+              _light: "{colors.gray}",
               _dark: "{colors.whiteAlpha.900}", // A soft white for text in dark mode
             },},
         },
