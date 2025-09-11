@@ -26,7 +26,7 @@ const ProfileBar: React.FC<ProfileBarProps> = ({username, avatarUrl, bio, follow
   };
 
   return (
-    <Flex alignItems={'left'} align={'left'} p={4} gap={4} w={'full'} borderColor={"whiteAlpha.300"} borderWidth={1} borderRadius={25} bgColor={"#cfceceff"} boxShadow={"md"}>
+    <Flex alignItems={'left'} align={'left'} p={4} gap={4} w={'full'} borderColor={"whiteAlpha.500"} borderBottomWidth={2}>
         <Avatar.Root w={'12vh'} h={'12vh'} bgColor={"black"}>
             <Avatar.Fallback name={username} />
             <Avatar.Image alt={username} src={avatarUrl} />

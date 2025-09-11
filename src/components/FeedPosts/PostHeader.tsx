@@ -5,16 +5,21 @@ import { ExpandableText } from './ExpandableText';
 interface PostHeaderProps {
   username: string;
   avatar: string;
+  cruPost: boolean;
 }
 
-const PostHeader: React.FC<PostHeaderProps> = ({username, avatar}) => {
+const PostHeader: React.FC<PostHeaderProps> = ({username, avatar, cruPost}) => {
   return (
     <VStack>
         <Flex justifyContent="space-between" alignItems="center" w="full">
             <Flex alignItems="center" gap={2}>
+                {cruPost ?
                 <Avatar.Root size="sm" shape="rounded">
                     <Avatar.Image src={avatar} alt="User Avatar" />
-                </Avatar.Root>
+                </Avatar.Root> :
+                <Avatar.Root size="sm">
+                    <Avatar.Image src={avatar} alt="User Avatar" />
+                </Avatar.Root>}
                 <VStack fontSize={12} gap={-1} alignItems={"initial"} fontWeight="bold">
                     {username}
                     <Text color={"gray.500"}>Saturday, 9 August 11:00AM</Text>

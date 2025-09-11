@@ -1,5 +1,5 @@
 import {  SearchLogo } from '@/assets/constants'
-import { Box, Flex, Text, Link, Image, Avatar, VStack } from '@chakra-ui/react'
+import { Box, Flex, Text, Link, Image, Avatar, VStack, Button } from '@chakra-ui/react'
 import { Tooltip } from "@/components/ui/tooltip"
 import React from 'react'
 import { Link as RouterLink } from 'react-router-dom'
@@ -43,6 +43,10 @@ const Sidebar: React.FC = () => {
     }
   ]
 
+  const logOut = () =>{
+
+  }
+
   return (
     <Box height={"100vh"} borderRight={"1px solid"} borderColor={"whiteAlpha.300"} py={8} position={"sticky"} top={0} bgColor={"#F7F7F7"} boxShadow={"md"} borderRadius={"5%"}>
       <Flex direction="column" h="full" justifyContent="space-between" alignItems="flex-start" borderColor={"orange"} borderWidth={5}> {/* Main container changed to Flex */}
@@ -78,10 +82,10 @@ const Sidebar: React.FC = () => {
             </Link>
           </Tooltip>
           <Tooltip content={"Log Out"} positioning={{ placement: "right" }} showArrow openDelay={500} closeDelay={100}>
-            <Link as={RouterLink} {...{ to: "/auth" }} display="flex" alignItems="center" gap={4} p={2} borderRadius={6} _hover={{ bg: "whiteAlpha.400" }} w={{ base: 10, md: "full" }} justifyContent={{ base: "center", md: "flex-start" }} mb={4}>
+            <Box onClick={logOut} display="flex" alignItems="center" gap={4} p={2} borderRadius={6} _hover={{ bg: "whiteAlpha.400" }} w={{ base: 10, md: "full" }} justifyContent={{ base: "center", md: "flex-start" }} mb={4} cursor="pointer">
               <BiLogOut size={25} fill={"black"}/>
               <Text display={{ base: "none", md: "block" }} color={"black"}>Log Out</Text>
-            </Link>
+            </Box>
           </Tooltip>
         </VStack>
       </Flex>

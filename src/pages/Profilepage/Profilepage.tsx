@@ -8,7 +8,7 @@ const profileName = getProfileName();
 
 const Profilepage = () => {
   return (
-    <VStack>
+    <VStack gap={2}>
       <Image
         src="/background.jpg"
         alt="Profile Picture"

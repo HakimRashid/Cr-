@@ -1,6 +1,7 @@
-import { VStack, Text, Skeleton } from '@chakra-ui/react'
+import { VStack, Text, Skeleton, Flex } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
 import PostSummary from './PostSummary'
+import { BiWorld } from 'react-icons/bi';
 
 const ExploreNew = () => {
 
@@ -16,7 +17,10 @@ const ExploreNew = () => {
     <VStack borderColor={"whiteAlpha.300"} borderWidth={1} p={7} borderRadius={50} bgColor={"#cfceceff"} boxShadow={"md"} w="full">
       {!isloading && (
         <>
-          <Text alignSelf={"flex-start"} fontWeight={"bold"} cursor={"pointer"} _hover={{color: "white"}}>Explore New Crü's</Text>
+          <Flex alignSelf={"flex-start"} w={"full"} gap={4}>
+            <BiWorld style={{marginLeft: "5px", marginTop: "3px"}} size={25} />
+            <Text alignSelf={"flex-start"} fontWeight={"bold"} cursor={"pointer"} _hover={{color: "white"}}>Explore New Crü's</Text>
+          </Flex>
           <PostSummary src='placeholder.png' name='Trending Post 1' creator='User' rating={0} />
           <PostSummary src='placeholder.png' name='Trending Post 1' creator='User' rating={0} />
           <PostSummary src='placeholder.png' name='Trending Post 1' creator='User' rating={0} />
