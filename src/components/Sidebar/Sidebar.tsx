@@ -6,6 +6,8 @@ import { Link as RouterLink } from 'react-router-dom'
 import { BiLogOut } from 'react-icons/bi'
 import { SlInfo, SlFire, SlEnvolope, SlList  } from 'react-icons/sl'
 import type { BsBorderWidth } from 'react-icons/bs'
+import {auth} from "../../../backend/firebaseAuth"
+import {signOut} from "firebase/auth"
 
 interface SidebarItem {
   icon: React.ReactNode;
